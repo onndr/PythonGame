@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+	<meta charset='UTF-8'>
+	<title>Python</title>
+	<link rel='stylesheet' type='text/css' href='styles.css' type='stylesheet'>
+</head>
+
+<body style='margin: 0px'>
+
+	<div class='game_heading'>Python</div>
+
+	<div class='gameLevel toHide'>Choose the difficulty level</div>
+	
+	<div class='buttonContainer toHide'>
+		<button class='toHide' onclick='startGame("easy")'>Easy</button>
+		<button class='toHide' onclick='startGame("middle")'>Middle</button>
+		<button class='toHide' onclick='startGame("hard")'>Hard</button>
+	</div>
+
+	<div hidden id='globalDiv' class='wrapper'>
+		<div hidden>Your score: <span id='scoreSection'></span></div>
+	</div>
+
+	<script src='scripts/Section.js'></script>
+	<script src='scripts/Python.js'></script>
+	<script src='scripts/GamingArea.js'></script>
+	
+	<script>
+
+		const KEY_LEFT_ARROW = 37;
+		const KEY_UP_ARROW = 38;
+		const KEY_RIGHT_ARROW = 39;
+		const KEY_DOWN_ARROW = 40;
+
+		const KEY_A = 65;
+		const KEY_W = 87;
+		const KEY_D = 68;
+		const KEY_S = 83;
+		
+		let startGame = (difficultyLevel) => {
+			document.querySelectorAll('.toHide').forEach(item => item.setAttribute('hidden', 'hidden'));
+			const container = document.getElementById('globalDiv');
+			const scoreSection = document.getElementById('scoreSection');
+
+			const tableSize = 20;
+
+			let gamingZone = new GamingArea(container, tableSize, tableSize, scoreSection);
+
+			let pythonSpeed, foodGenerationSpeed = undefined;
+
+			switch (difficultyLevel){
+				case 'easy': 
+					pythonSpeed = 400;
+					foodGenerationSpeed = 6000;
+					break;
+				case 'middle':
+					pythonSpeed = 200;
+					foodGenerationSpeed = 4000;
+					break;
+				case 'hard':
+					pythonSpeed = 100;
+					foodGenerationSpeed = 3000;
+					break;
+			}
+
+			gamingZone.startGame(0, 0, 3, pythonSpeed, foodGenerationSpeed);
+		}
+	</script>
+
+</body>
+
+</html

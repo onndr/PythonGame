@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+body{
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    color: blanchedalmond;
+}
+
+.wrapper{
+    position: relative;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper div{
+    margin: 0 50px;
+    font-size: 24px;
+}
+
+table.pythonField td{
+    width:30px; 
+    height:30px; 
+    padding: 0;
+}
+
+table.pythonField img{
+    width:20px; 
+    height: 20px; 
+
+    margin-left: 5px;
+}
+
+.game_heading{
+    color: blanchedalmond;
+    text-align: center;
+    font-size: 70px;
+}
+
+table.pythonField td.occupiedCell{
+    border: cornsilk solid 0.5px;
+}
+
+div.buttonContainer{
+    justify-content: center;
+    display: flex;
+}
+
+div.buttonContainer button{
+    font-size: 24px;
+    margin: 10px;
+    width: 100px;
+    height: 50px;
+    margin-top: 40px;
+}
+
+div.gameLevel{
+    font-size: 34px;
+    text-align: center;
+    margin-top: 30px;
+    color: blanchedalmond;
+}

@@ -48,9 +48,9 @@ class GamingArea {
             }
         } else if(Math.abs(dY) > Math.abs(dX)){
             if(dY > 0){
-                this.changePythonDirection({keyCode: 87});
-            } else if (dY < 0){
                 this.changePythonDirection({keyCode: 83});
+            } else if (dY < 0){
+                this.changePythonDirection({keyCode: 87});
             }
         }
     }

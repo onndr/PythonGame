@@ -33,11 +33,11 @@ class GamingArea {
     }
 
     touchStart = (event) => {
-        this.startPoint = {x: event.screenX, y: event.screenY};
+        this.startPoint = {x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY};
     }
 
     touchEnd = (event) => {
-        this.endPoint = {x: event.screenX, y: event.screenY};
+        this.endPoint = {x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY};
         let dX = this.endPoint.x - this.startPoint.x;
         let dY = this.endPoint.y - this.startPoint.y;
         if(Math.abs(dX) > Math.abs(dY)){

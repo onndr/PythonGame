@@ -2,7 +2,6 @@
 
 body{
     background-color: black;
-    font-family: 'Roboto', sans-serif;
     color: blanchedalmond;
     overscroll-behavior: contain;
 }
@@ -90,5 +89,31 @@ div.gameLevel{
     }
     .wrapper {
         width: 100%;
+    }
+
+    div.gameLevel{
+        font-size: 44px;
+    }
+
+    div.buttonContainer button{
+        margin: 20px;
+        width: 180px;
+        height: 70px;
+        font-size: 32px;
+    }
+
+    
+    table.pythonField td{
+        width:50px; 
+        height:50px; 
+    }
+
+    table.pythonField img{
+        width: 40px; 
+        height: 40px; 
+    }
+
+    .game_heading{
+        font-size: 86px;
     }
   }

@@ -32,15 +32,13 @@ class GamingArea {
     }
 
     touchStart = (event) => {
-        event.preventDefault();
         this.startPoint = {x: event.screenX, y: event.screenY};
     }
 
     touchEnd = (event) => {
-        event.preventDefault();
         this.endPoint = {x: event.screenX, y: event.screenY};
-        let dX = this.startPoint.x - this.endPoint.x;
-        let dY = this.startPoint.y - this.endPoint.y;
+        let dX = this.endPoint.x - this.startPoint.x;
+        let dY = this.endPoint.y - this.startPoint.y;
         if(Math.abs(dX) > Math.abs(dY)){
             if(dX > 0){
                 this.changePythonDirection({keyCode: 68});

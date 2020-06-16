@@ -26,8 +26,9 @@ class GamingArea {
         document.addEventListener('keydown', this.changePythonDirection);
         this.movePython(movingSpeed);
         this.scoreSection.parentNode.removeAttribute('hidden');
-        document.addEventListener('touchstart', this.touchStart);
-        document.addEventListener('touchend', this.touchEnd);
+        document.addEventListener('touchstart', this.touchStart, false);
+        document.addEventListener('touchend', this.touchEnd, false);
+        document.addEventListener('touchmove', ()=>{event.preventDefault()});
         console.log('Game started');
     }
 

@@ -26,12 +26,41 @@ class GamingArea {
         document.addEventListener('keydown', this.changePythonDirection);
         this.movePython(movingSpeed);
         this.scoreSection.parentNode.removeAttribute('hidden');
+        document.body.addEventListener('touchstart', this.touchStart);
+        document.body.addEventListener('touchstart', this.touchEnd);
         console.log('Game started');
+    }
+
+    touchStart = (event) => {
+        event.preventDefault();
+        this.startPoint = {x: event.screenX, y: event.screenY};
+    }
+
+    touchEnd = (event) => {
+        event.preventDefault();
+        this.endPoint = {x: event.screenX, y: event.screenY};
+        let dX = this.startPoint.x - this.endPoint.x;
+        let dY = this.startPoint.y - this.endPoint.y;
+        if(Math.abs(dX) > Math.abs(dY)){
+            if(dX > 0){
+                this.changePythonDirection({keyCode: 68});
+            } else if (dX < 0){
+                this.changePythonDirection({keyCode: 65});
+            }
+        } else if(Math.abs(dY) > Math.abs(dX)){
+            if(dY > 0){
+                this.changePythonDirection({keyCode: 87});
+            } else if (dY < 0){
+                this.changePythonDirection({keyCode: 83});
+            }
+        }
     }
 
     endGame() {
         this.isGameContinues = false;
         document.removeEventListener('keydown', this.changePythonDirection);
+        document.removeEventListener('touchstart', this.touchStart);
+        document.removeEventListener('touchend', this.touchEnd);
         console.log('Game over');
         alert('Game over');
         this.tableNode.remove();

@@ -27,7 +27,7 @@ class GamingArea {
         this.movePython(movingSpeed);
         this.scoreSection.parentNode.removeAttribute('hidden');
         document.addEventListener('touchstart', this.touchStart);
-        document.addEventListener('touchstart', this.touchEnd);
+        document.addEventListener('touchend', this.touchEnd);
         console.log('Game started');
     }
 

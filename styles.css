@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 body{
     background-color: black;
@@ -12,6 +12,10 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.score{
+    font-family: 'Sriracha', cursive;
 }
 
 .wrapper div{
@@ -35,6 +39,7 @@ table.pythonField img{
 .game_heading{
     color: blanchedalmond;
     text-align: center;
+    font-family: 'Sriracha', cursive;
     font-size: 70px;
 }
 
@@ -50,12 +55,28 @@ div.buttonContainer{
 div.buttonContainer button{
     font-size: 24px;
     margin: 10px;
-    width: 100px;
-    height: 50px;
+    width: 150px;
+    height: 70px;
     margin-top: 40px;
+    font-family: 'Sriracha', cursive;
+
+    font-size: large;
+	font-weight: 600;
+	border: 2px solid black;
+	background-color: azure;
+	color: black;
+	transition-duration: 0.3s;
+	border-radius: 10%;
+}
+
+div.buttonContainer button:hover{
+	background-color: black;
+	border: 2px solid #67c7ac;
+	color: white;
 }
 
 div.gameLevel{
+    font-family: 'Sriracha', cursive;
     font-size: 34px;
     text-align: center;
     margin-top: 30px;

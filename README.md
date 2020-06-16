@@ -1,2 +1,2 @@
 # PythonGame
- My little game
+ My little studying project

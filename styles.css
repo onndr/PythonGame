@@ -4,6 +4,7 @@ body{
     background-color: black;
     font-family: 'Roboto', sans-serif;
     color: blanchedalmond;
+    overscroll-behavior: contain;
 }
 
 .wrapper{

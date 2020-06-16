@@ -16,15 +16,6 @@ body{
 
 div.score{
     font-family: 'Sriracha', cursive;
-    border: 2px solid black;
-    border-radius: 10%;
-    transition-duration: 0.3s;
-}
-
-div.score:hover{
-    background-color: white;
-    border: 2px solid #67c7ac;
-    color: black;
 }
 
 @media only screen and (min-width: 1081px){
@@ -34,6 +25,15 @@ div.score:hover{
         left: 250px;
         top: 550px;
         padding: 5px;
+        transition-duration: 0.3s;
+        border: 2px solid black;
+        border-radius: 10%;
+    }
+    
+    div.score:hover{
+        background-color: white;
+        border: 2px solid #67c7ac;
+        color: black;
     }
 }
 

@@ -102,15 +102,14 @@ div.gameLevel{
         font-size: 32px;
     }
 
-    
     table.pythonField td{
         width:50px; 
         height:50px; 
     }
 
     table.pythonField img{
-        width: 40px; 
-        height: 40px; 
+        width: 38px; 
+        height: 38px; 
     }
 
     .game_heading{

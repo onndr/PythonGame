@@ -44,9 +44,17 @@
 			const container = document.getElementById('globalDiv');
 			const scoreSection = document.getElementById('scoreSection');
 
-			const tableSize = 20;
+			const tableSize = {
+				width: 20,
+				height: 20
+			}
 
-			let gamingZone = new GamingArea(container, tableSize, tableSize, scoreSection);
+			if(window.screen.width <= 1080){
+				tableSize.width = 18;
+				tableSize.height = 24;
+			}
+
+			let gamingZone = new GamingArea(container, tableSize.height, tableSize.width, scoreSection);
 
 			let pythonSpeed, foodGenerationSpeed = undefined;
 

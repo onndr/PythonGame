@@ -19,9 +19,9 @@
 		<button class='toHide' onclick='startGame("hard")'>Hard</button>
 	</div>
 
-	<div hidden id='globalDiv' class='wrapper'>
-		<div class="score" hidden>Your score: <span id='scoreSection'></span></div>
-	</div>
+	<div hidden id='globalDiv' class='wrapper'></div>
+
+	<div class="score" hidden>Your score: <span id='scoreSection'></span></div>
 
 	<script src='scripts/Section.js'></script>
 	<script src='scripts/Python.js'></script>
@@ -50,8 +50,8 @@
 			}
 
 			if(window.screen.width <= 1080){
-				tableSize.width = 18;
-				tableSize.height = 24;
+				tableSize.width = 16;
+				tableSize.height = 22;
 			}
 
 			let gamingZone = new GamingArea(container, tableSize.height, tableSize.width, scoreSection);

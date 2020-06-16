@@ -40,6 +40,8 @@ class GamingArea {
         this.endPoint = {x: event.screenX, y: event.screenY};
         let dX = this.endPoint.x - this.startPoint.x;
         let dY = this.endPoint.y - this.startPoint.y;
+        alert(this.startPoint);
+        alert(this.endPoint);
         if(Math.abs(dX) > Math.abs(dY)){
             if(dX > 0){
                 this.changePythonDirection({keyCode: 68});

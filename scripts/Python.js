@@ -3,7 +3,7 @@ class Python{
     constructor(x, y, direction){
         this.x = undefined;
         this.y = undefined;
-        this.head = new Section(x, y, 'https://i.ya-webdesign.com/images/transparent-circle-png-2.png', direction);
+        this.head = new Section(x, y, 'images/head.png', direction);
         this.sections = [];
         this.direction = direction;
     }
@@ -34,7 +34,7 @@ class Python{
                 break;
         }
         newSectionSetting.direction = lastSection.direction;
-        let section = new Section(newSectionSetting.x, newSectionSetting.y, 'https://i.ya-webdesign.com/images/glow-circle-png-15.png', newSectionSetting.direction);
+        let section = new Section(newSectionSetting.x, newSectionSetting.y, 'images/section.png', newSectionSetting.direction);
         section.delayedDirections = [...lastSection.delayedDirections]
         this.sections.push(section);
     }

@@ -26,6 +26,7 @@ class GamingArea {
         document.addEventListener('keydown', this.changePythonDirection);
         this.movePython(movingSpeed);
         this.scoreSection.parentNode.removeAttribute('hidden');
+        this.scoreSection.parentNode.style.display = 'flex';
         document.addEventListener('touchstart', this.touchStart, false);
         document.addEventListener('touchend', this.touchEnd, false);
         document.addEventListener('touchmove', ()=>{event.preventDefault()});
@@ -64,6 +65,7 @@ class GamingArea {
         alert('Game over');
         this.tableNode.remove();
         this.scoreSection.parentNode.setAttribute('hidden', 'hidden');
+        this.scoreSection.parentNode.style.display = 'none';
         document.querySelectorAll('.toHide').forEach(item => item.removeAttribute('hidden'));
     }
 

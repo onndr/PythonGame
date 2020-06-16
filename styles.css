@@ -16,20 +16,25 @@ body{
 
 div.score{
     font-family: 'Sriracha', cursive;
-    position: absolute;
-    font-size: 24px;
-    left: 250px;
-    top: 550px;
-    padding: 5px;
     border: 2px solid black;
     border-radius: 10%;
     transition-duration: 0.3s;
 }
 
 div.score:hover{
-	background-color: white;
-	border: 2px solid #67c7ac;
-	color: black;
+    background-color: white;
+    border: 2px solid #67c7ac;
+    color: black;
+}
+
+@media only screen and (min-width: 1081px){
+    div.score{
+        position: absolute;
+        font-size: 24px;
+        left: 250px;
+        top: 550px;
+        padding: 5px;
+    }
 }
 
 .wrapper div{
@@ -98,9 +103,13 @@ div.gameLevel{
 }
 
 @media only screen and (max-width: 1080px) {
-    .score {
-      display: none;
+    div.score {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
     }
+
     .wrapper {
         width: 100%;
     }

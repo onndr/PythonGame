@@ -43,15 +43,15 @@ class GamingArea {
         let dY = this.endPoint.y - this.startPoint.y;
         if(Math.abs(dX) > Math.abs(dY)){
             if(dX > 0){
-                this.changePythonDirection({keyCode: 68});
+                this.changePythonDirection({keyCode: KEY_D});
             } else if (dX < 0){
-                this.changePythonDirection({keyCode: 65});
+                this.changePythonDirection({keyCode: KEY_A});
             }
         } else if(Math.abs(dY) > Math.abs(dX)){
             if(dY > 0){
-                this.changePythonDirection({keyCode: 83});
+                this.changePythonDirection({keyCode: KEY_S});
             } else if (dY < 0){
-                this.changePythonDirection({keyCode: 87});
+                this.changePythonDirection({keyCode: KEY_W});
             }
         }
     }

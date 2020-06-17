@@ -10,25 +10,16 @@
 <body style='margin: 0px'>
 
 	<div class='game_heading'>Python</div>
-
 	<div class='gameLevel toHide'>Choose the difficulty level</div>
-	
 	<div class='buttonContainer toHide'>
 		<button class='toHide' onclick='startGame("easy")'>Easy</button>
 		<button class='toHide' onclick='startGame("middle")'>Middle</button>
 		<button class='toHide' onclick='startGame("hard")'>Hard</button>
 	</div>
-
 	<div hidden id='globalDiv' class='wrapper'></div>
-
 	<div class="score" hidden>Your score: <span id='scoreSection'></span></div>
 
-	<script src='scripts/Section.js'></script>
-	<script src='scripts/Python.js'></script>
-	<script src='scripts/GamingArea.js'></script>
-	
 	<script>
-
 		const KEY_LEFT_ARROW = 37;
 		const KEY_UP_ARROW = 38;
 		const KEY_RIGHT_ARROW = 39;
@@ -38,24 +29,29 @@
 		const KEY_W = 87;
 		const KEY_D = 68;
 		const KEY_S = 83;
-		
+	</script>
+
+	<script src='scripts/Section.js'></script>
+	<script src='scripts/Python.js'></script>
+	<script src='scripts/GamingArea.js'></script>
+	
+	<script>
 		let startGame = (difficultyLevel) => {
 			document.querySelectorAll('.toHide').forEach(item => item.setAttribute('hidden', 'hidden'));
 			const container = document.getElementById('globalDiv');
 			const scoreSection = document.getElementById('scoreSection');
 
-			const tableSize = {
-				width: 20,
-				height: 20
-			}
+			const tableSize = {};
 
 			if(window.screen.width <= 1080){
 				tableSize.width = 16;
 				tableSize.height = 22;
+			} else if(window.screen.width > 1080){
+				tableSize.width = 28;
+				tableSize.height = 18;
 			}
 
 			let gamingZone = new GamingArea(container, tableSize.height, tableSize.width, scoreSection);
-
 			let pythonSpeed, foodGenerationSpeed = undefined;
 
 			switch (difficultyLevel){

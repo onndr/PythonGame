@@ -19,21 +19,26 @@ div.score{
 }
 
 @media only screen and (min-width: 1081px){
+    body{
+        background-image: url(images/backgr1920.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;   
+    }
     div.score{
         position: absolute;
         font-size: 24px;
         left: 250px;
         top: 550px;
         padding: 5px;
+        border: 2px solid rgba(0, 0, 0, 0);
         transition-duration: 0.3s;
-        border: 2px solid black;
-        border-radius: 10%;
     }
     
     div.score:hover{
         background-color: white;
         border: 2px solid #67c7ac;
         color: black;
+        border-radius: 10%;
     }
 }
 
@@ -82,7 +87,7 @@ div.buttonContainer button{
     font-size: large;
 	font-weight: 600;
 	border: 2px solid black;
-	background-color: azure;
+	background-color: #f8f8ff;
 	color: black;
 	transition-duration: 0.3s;
 	border-radius: 10%;
@@ -91,7 +96,7 @@ div.buttonContainer button{
 div.buttonContainer button:hover{
 	background-color: black;
 	border: 2px solid #67c7ac;
-	color: white;
+	color: #f8f8ff;
 }
 
 div.gameLevel{
@@ -103,6 +108,13 @@ div.gameLevel{
 }
 
 @media only screen and (max-width: 1080px) {
+
+    body{
+        background-image: url(images/backgr720.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;   
+    }
+
     div.score {
         display: none;
         justify-content: center;
@@ -116,6 +128,9 @@ div.gameLevel{
 
     div.gameLevel{
         font-size: 44px;
+        background-color: rgba(7, 26, 26, 0.5);
+        border-radius: 30%;
+        border: none;
     }
 
     div.buttonContainer button{

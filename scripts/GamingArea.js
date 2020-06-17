@@ -105,7 +105,10 @@ class GamingArea {
     renderFood(foodElement) {
         if (!this.checkIfGameCanContinue()) return;
         let newFoods = this.foods.filter(element => this.cells[element.y][element.x].childNodes.length === 0);
-        newFoods.forEach(element => this.cells[element.y][element.x].append(foodElement));
+        newFoods.forEach(element => {
+            this.cells[element.y][element.x].append(foodElement); 
+            this.cells[element.y][element.x].className = 'apple';
+        });
     }
 
     renderPython(isShown) {
@@ -192,12 +195,15 @@ class GamingArea {
         this.parent.append(table);
     }
 
-    eatFood() {
+    eatFood = () => {
         if (!this.checkIfGameCanContinue()) return;
         let pythonHead = { x: this.python.x, y: this.python.y };
         if (this.cells[pythonHead.y][pythonHead.x].firstChild) {
             if (this.cells[pythonHead.y][pythonHead.x].firstChild.tagName === 'IMG') {
                 this.cells[pythonHead.y][pythonHead.x].firstChild.remove();
+                let food = this.foods.filter(el => el.x === pythonHead.x && el.y === pythonHead.y)[0];
+                this.foods.splice(this.foods.indexOf(food), 1);
+                this.cells[pythonHead.y][pythonHead.x].className = '';
                 this.python.addSection();
                 this.score++;
                 this.updateScore();

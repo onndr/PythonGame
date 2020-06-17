@@ -157,6 +157,10 @@ div.gameLevel{
         background-color: rgba(0, 190, 152, 0.666);
     }
 
+    table.pythonField td.apple{
+        background-color: rgba(255, 0, 0, 0.333);
+    }
+
     table.pythonField td{
         border: white solid 1px;
         background-color: rgba(255, 255, 255, 0.1);

@@ -52,12 +52,12 @@ table.pythonField td{
     height:30px; 
     border: white solid 0.5px;
     padding: 0;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 table.pythonField img{
     width:20px; 
     height: 20px; 
-
     margin-left: 5px;
 }
 
@@ -71,6 +71,7 @@ table.pythonField img{
 
 table.pythonField td.occupiedCell{
     border: cornsilk solid 0.5px;
+    background-color: rgba(118, 232, 209, 0.6);
 }
 
 div.buttonContainer{

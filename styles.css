@@ -154,7 +154,7 @@ div.gameLevel{
     }
 
     table.pythonField td.occupiedCell{
-        background-color: rgba(0, 190, 152, 0.9);
+        background-color: rgba(0, 190, 152, 0.666);
     }
 
     table.pythonField td{

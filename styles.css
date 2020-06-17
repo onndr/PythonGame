@@ -50,6 +50,7 @@ div.score{
 table.pythonField td{
     width:30px; 
     height:30px; 
+    border: white solid 0.5px;
     padding: 0;
 }
 

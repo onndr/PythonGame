@@ -153,6 +153,7 @@ class GamingArea {
         });
         if (!(this.obstacles.length % (maxObstaclesCount + 1))) {
             let pos = { ...this.obstacles[0] };
+            this.cells[pos.y][pos.x].className = '';
             this.cells[pos.y][pos.x].firstChild.remove();
             this.obstacles.shift();
         }

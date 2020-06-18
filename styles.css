@@ -163,10 +163,6 @@ div.gameLevel{
     }
   }
 
-table.pythonField td.apple{
-    background-color: rgba(255, 0, 0, 0.333);
-}
-
 table.pythonField td.obstacle{
     background-color: rgba(204, 159, 218, 0.801);
 }

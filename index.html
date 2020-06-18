@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset='UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Python</title>
 	<link rel='stylesheet' type='text/css' href='styles.css' type='stylesheet'>
 </head>
@@ -52,26 +53,29 @@
 			}
 
 			let gamingZone = new GamingArea(container, tableSize.height, tableSize.width, scoreSection);
-			let pythonSpeed, foodGenerationSpeed = undefined;
+			let pythonSpeed, foodGenerationSpeed, maxObstaclesCount = undefined;
 
 			switch (difficultyLevel){
 				case 'easy': 
 					pythonSpeed = 400;
 					foodGenerationSpeed = 6000;
+					maxObstaclesCount = 5;
 					break;
 				case 'middle':
 					pythonSpeed = 200;
 					foodGenerationSpeed = 4000;
+					maxObstaclesCount = 7;
 					break;
 				case 'hard':
 					pythonSpeed = 100;
 					foodGenerationSpeed = 3000;
+					maxObstaclesCount = 10;
 					break;
 			}
 
 			this.gamingZone = gamingZone;
 
-			gamingZone.startGame(0, 0, 3, pythonSpeed, foodGenerationSpeed);
+			gamingZone.startGame(0, 0, 3, pythonSpeed, foodGenerationSpeed, maxObstaclesCount);
 		}
 	</script>
 

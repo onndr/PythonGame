@@ -7,7 +7,8 @@ class GamingArea {
         this.totalCellsCount = rowsCount * collumnsCount;
         this.parent = parentNode;
         this.tableNode = undefined;
-
+        this.items = [];
+        this.obstacles = [];
         this.foods = [];
         this.python = undefined;
         this.score = 0;
@@ -16,42 +17,43 @@ class GamingArea {
         this.isGameContinues = false;
     }
 
-    startGame(x, y, direction, movingSpeed, foodGenerationSpeed) {
+    startGame(x, y, direction, movingSpeed, foodGenerationSpeed, maxObstaclesCount) {
+        this.isGameContinues = true;
         this.parent.removeAttribute('hidden');
         this.createTable();
         this.updateScore();
-        this.isGameContinues = true;
         this.createPython(x, y, direction);
-        this.generateFood(foodGenerationSpeed);
-        document.addEventListener('keydown', this.changePythonDirection);
+        setTimeout(() => { this.generateFood(foodGenerationSpeed) }, foodGenerationSpeed);
+        setTimeout(() => { this.generateObstacle(Math.ceil(Math.random() * 11000), maxObstaclesCount) }, Math.ceil(Math.random() * 11000));
         this.movePython(movingSpeed);
         this.scoreSection.parentNode.removeAttribute('hidden');
         this.scoreSection.parentNode.style.display = 'flex';
-        document.addEventListener('touchstart', this.touchStart, false);
-        document.addEventListener('touchend', this.touchEnd, false);
-        document.addEventListener('touchmove', ()=>{event.preventDefault()});
+        document.addEventListener('keydown', this.changePythonDirection);
+        document.addEventListener('touchstart', this.handleTouchStart, false);
+        document.addEventListener('touchend', this.handleTouchEnd, false);
+        document.addEventListener('touchmove', () => { event.preventDefault() });
         console.log('Game started');
     }
 
-    touchStart = (event) => {
-        this.startPoint = {x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY};
+    handleTouchStart = (event) => {
+        this.startPoint = { x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY };
     }
 
-    touchEnd = (event) => {
-        this.endPoint = {x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY};
+    handleTouchEnd = (event) => {
+        this.endPoint = { x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY };
         let dX = this.endPoint.x - this.startPoint.x;
         let dY = this.endPoint.y - this.startPoint.y;
-        if(Math.abs(dX) > Math.abs(dY)){
-            if(dX > 0){
-                this.changePythonDirection({keyCode: KEY_D});
-            } else if (dX < 0){
-                this.changePythonDirection({keyCode: KEY_A});
+        if (Math.abs(dX) > Math.abs(dY)) {
+            if (dX > 0) {
+                this.changePythonDirection({ keyCode: KEY_D });
+            } else if (dX < 0) {
+                this.changePythonDirection({ keyCode: KEY_A });
             }
-        } else if(Math.abs(dY) > Math.abs(dX)){
-            if(dY > 0){
-                this.changePythonDirection({keyCode: KEY_S});
-            } else if (dY < 0){
-                this.changePythonDirection({keyCode: KEY_W});
+        } else if (Math.abs(dY) > Math.abs(dX)) {
+            if (dY > 0) {
+                this.changePythonDirection({ keyCode: KEY_S });
+            } else if (dY < 0) {
+                this.changePythonDirection({ keyCode: KEY_W });
             }
         }
     }
@@ -92,23 +94,68 @@ class GamingArea {
             } else return foodPosition;
         }
 
-        let position = defineFoodPosition(this.foods);
+        let position = defineFoodPosition(this.items);
 
         this.foods.push(position);
+        this.items.push(position);
         this.renderFood(food);
 
-        if (this.foods.length === this.totalCellsCount) return;
+        if (this.items.length === this.totalCellsCount) return;
 
         setTimeout(() => { this.generateFood(speed) }, speed);
+    }
+
+    generateObstacle = (speed, maxObstaclesCount) => {
+        if (!this.checkIfGameCanContinue()) return;
+        let obstacle = document.createElement('img');
+        obstacle.src = `images/obst${Math.round(Math.random() * 3)}.png`;
+
+        const defineObstaclePosition = (existingItems) => {
+            let obstaclePosition = {
+                x: Math.round(Math.random() * (this.collumnsCount - 1)),
+                y: Math.round(Math.random() * (this.rowsCount - 1))
+            };
+
+            let isPositionOccupied = existingItems.some(element => element.x === obstaclePosition.x && element.y === obstaclePosition.y);
+            //let isPositionOccupied = existingFoods.some(element => element.x === obstaclePosition.x && element.y === obstaclePosition.y);
+
+            if (isPositionOccupied) {
+                return defineObstaclePosition(existingItems);
+            } else return obstaclePosition;
+        }
+
+        let position = defineObstaclePosition(this.items);
+
+        this.obstacles.push(position);
+        this.items.push(position);
+        this.renderObstacle(obstacle, maxObstaclesCount);
+
+        if (this.items.length === this.totalCellsCount) return;
+
+        setTimeout(() => { this.generateObstacle(Math.ceil(Math.random() * 11000) + 10000, maxObstaclesCount) }, speed);
     }
 
     renderFood(foodElement) {
         if (!this.checkIfGameCanContinue()) return;
         let newFoods = this.foods.filter(element => this.cells[element.y][element.x].childNodes.length === 0);
         newFoods.forEach(element => {
-            this.cells[element.y][element.x].append(foodElement); 
+            this.cells[element.y][element.x].append(foodElement);
             this.cells[element.y][element.x].className = 'apple';
         });
+    }
+
+    renderObstacle(obstacleElement, maxObstaclesCount) {
+        if (!this.checkIfGameCanContinue()) return;
+        let newObstacles = this.obstacles.filter(element => this.cells[element.y][element.x].childNodes.length === 0);
+        newObstacles.forEach(element => {
+            this.cells[element.y][element.x].append(obstacleElement);
+            this.cells[element.y][element.x].className = 'obstacle';
+        });
+        if (!(this.obstacles.length % (maxObstaclesCount + 1))) {
+            let pos = { ...this.obstacles[0] };
+            this.cells[pos.y][pos.x].firstChild.remove();
+            this.obstacles.shift();
+        }
     }
 
     renderPython(isShown) {
@@ -202,11 +249,17 @@ class GamingArea {
             if (this.cells[pythonHead.y][pythonHead.x].firstChild.tagName === 'IMG') {
                 this.cells[pythonHead.y][pythonHead.x].firstChild.remove();
                 let food = this.foods.filter(el => el.x === pythonHead.x && el.y === pythonHead.y)[0];
-                this.foods.splice(this.foods.indexOf(food), 1);
-                this.cells[pythonHead.y][pythonHead.x].className = '';
-                this.python.addSection();
-                this.score++;
-                this.updateScore();
+                if (food) {
+                    this.foods.splice(this.foods.indexOf(food), 1);
+                    this.cells[pythonHead.y][pythonHead.x].className = '';
+                    this.python.addSection();
+                    this.score++;
+                    this.updateScore();
+                }
+                let obstacle = this.obstacles.filter(el => el.x === pythonHead.x && el.y === pythonHead.y)[0];
+                if (obstacle) {
+                    this.endGame();
+                }
             }
         }
     }

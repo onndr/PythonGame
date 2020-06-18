@@ -140,8 +140,9 @@ class GamingArea {
         let newFoods = this.foods.filter(element => this.cells[element.y][element.x].childNodes.length === 0);
         newFoods.forEach(element => {
             this.cells[element.y][element.x].append(foodElement);
-            this.cells[element.y][element.x].className = 'apple';
+            //this.cells[element.y][element.x].className = 'apple';
         });
+        this.foods.forEach(el => {this.cells[el.y][el.x].className = 'apple'});
     }
 
     renderObstacle(obstacleElement, maxObstaclesCount) {

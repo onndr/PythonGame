@@ -1,6 +1,6 @@
 'use strict';
 class GamingArea {
-    minTouchDelta = 50;
+    minTouchDelta = 30;
     constructor(parentNode, rowsCount, collumnsCount, scoreSection = null) {
         this.cells = [];
         this.rowsCount = rowsCount;
@@ -14,7 +14,6 @@ class GamingArea {
         this.python = undefined;
         this.score = 0;
         this.scoreSection = scoreSection;
-
         this.isGameContinues = false;
     }
 
@@ -30,37 +29,17 @@ class GamingArea {
         this.scoreSection.parentNode.removeAttribute('hidden');
         this.scoreSection.parentNode.style.display = 'flex';
         document.addEventListener('keydown', this.changePythonDirection);
-        document.addEventListener('touchstart', this.handleTouchStart);
-        document.addEventListener('touchmove', this.handleTouchMove);
+        document.addEventListener('touchstart', this.touchStartHandler);
+        document.addEventListener('touchmove', this.touchMoveHandler);
         console.log('Game started');
     }
 
-    handleTouchStart = (event) => {
+    touchStartHandler = (event) => {
         this.startPoint = { x: event.touches[0].screenX, y: event.touches[0].screenY };
     }
 
-    /*handleTouchEnd = (event) => {
-        this.endPoint = { x: event.touches[0].screenX, y: event.touches[0].screenY };
-        let dX = this.endPoint.x - this.startPoint.x;
-        let dY = this.endPoint.y - this.startPoint.y;
-        if (Math.abs(dX) > Math.abs(dY)) {
-            if (dX > 0) {
-                this.changePythonDirection({ keyCode: KEY_D });
-            } else if (dX < 0) {
-                this.changePythonDirection({ keyCode: KEY_A });
-            }
-        } else if (Math.abs(dY) > Math.abs(dX)) {
-            if (dY > 0) {
-                this.changePythonDirection({ keyCode: KEY_S });
-            } else if (dY < 0) {
-                this.changePythonDirection({ keyCode: KEY_W });
-            }
-        }
-    }*/
-
-    handleTouchMove = (event) => {
-        event.preventDefault();
-        let currentPoint = {x: event.touches[0].x, y: event.touches[0].y};
+    touchMoveHandler = (event) => {
+        let currentPoint = {x: event.touches[0].screenX, y: event.touches[0].screenY};
 
         let dX = currentPoint.x - this.startPoint.x;
         let dY = currentPoint.y - this.startPoint.y;
@@ -85,8 +64,8 @@ class GamingArea {
     endGame() {
         this.isGameContinues = false;
         document.removeEventListener('keydown', this.changePythonDirection);
-        document.removeEventListener('touchstart', this.touchStart);
-        document.removeEventListener('touchend', this.touchEnd);
+        document.removeEventListener('touchstart', this.handleTouchStart);
+        document.removeEventListener('touchmove', this.handleTouchMove);
         console.log('Game over');
         alert('Game over');
         this.tableNode.remove();

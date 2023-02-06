@@ -1,3 +1,5 @@
 # PythonGame
- My little studying project. 
- Page: https://onndr.github.io/PythonGame/
+
+ Personal project.
+ 
+ Pure JavaScript, HTML and CSS

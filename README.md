@@ -4,4 +4,4 @@
  
  Pure JavaScript, HTML and CSS
  
- Webpage: onndr.github.io/PythonGame/ 
+ Webpage: https://onndr.github.io/PythonGame/ 
